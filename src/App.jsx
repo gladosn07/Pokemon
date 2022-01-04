@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import PokemonThumnails from "./components/PokemonThumnails";
+import { SpinnerCircular } from 'spinners-react';
 import "./index.css";
 
 function App() {
@@ -32,10 +33,10 @@ function App() {
 
   return (
     <div className="app-contaner">
-      <h1>Pokemon Evolution</h1>
+      <h1 className='header'>Pokemon Evolution</h1>
       <div className="pokemon-container">
         <div className="all-container">
-          {allPokemons.map((pokemon, index) => (
+          {allPokemons ? allPokemons.map((pokemon, index) => (
             <PokemonThumnails
               id={pokemon.id}
               name={pokemon.name}
@@ -43,7 +44,7 @@ function App() {
               image={pokemon.sprites.other.dream_world.front_default}
               key={index}
             />
-          ))}
+          )): <SpinnerCircular className='spinner'/>}
         </div>
         <button className="load-more" onClick={() => getAllPokemons()}>
           Load More
